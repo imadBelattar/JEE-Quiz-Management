@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+   <f:event type="preRenderView" listener="#{userBean.isloggedLevel1}" />
+   <f:event type="preRenderView" listener="#{quizBean.retrieveQuizzes(userBean.user)}" />
+   <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<title>Quiz App</title>
+<h:outputStylesheet library="css" name="bootstrap4.css" />
+<h:outputStylesheet library="css" name="style.css" />
+<h:outputScript library="js" name="btJS.js" />
+<h:outputScript library="js" name="btJS2.js" />
+<h:outputScript library="js" name="mainJS.js" />
+</h:head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #4d4dff !important;">
+<a class="navbar-brand" href="#">Quiz App</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+   <ul class="navbar-nav">
+      <li class="nav-item active">
+         <a class="nav-link" href="creatorIndex.xhtml">Quizes</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="StudentsNotes.xhtml">Student's Notes</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="creatorROLES/addquiz.xhtml">Add Quiz</a>
+      </li>
+   </ul>
+
+</div>
+   <div class="logo-nav">
+      <div class="dropdown user-nav">
+         <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h:graphicImage value="#{resource['images:user-logo.png']}" class="user-logo-image"/>
+         </a>
+         <h:outputLabel value="MR. #{userBean.user.firstName} #{userBean.user.lastName}"/>
+         <div class="dropdown-menu logoutMenu" aria-labelledby="userDropdown">
+            <!-- Add the content you want to show in the dropdown menu here -->
+            <h:form>
+               <h:commandButton value="Log out" action="#{userBean.logOut}" class="btn btn-danger logOutbtn"/>
+            </h:form>
+
+         </div>
+
+      </div>
+      <h:graphicImage value="#{resource['images:Quiz-logo.png']}" width="120"/>
+   </div>
+
+</nav>
+
+
+<div class="FatherContainer">
+<div class="quizzesTableContainer">
+<h4 class="titleT">Welcome to Quiz App!</h4>
+<h5 style="color: black !important;">Here are your recently created Quizzes :</h5>
+<table class="table table-hover quizzesTable">
+   <thead>
+   <tr>
+      <th scope="col">Num</th>
+      <th scope="col">Title</th>
+      <th scope="col">Theme</th>
+      <th scope="col">Score</th>
+      <th scope="col">Date</th>
+      <th scope="col">Action</th>
+   </tr>
+   </thead>
+   <tbody>
+   <ui:repeat value="#{quizBean.userQuizs}" var="quizz" varStatus="status">
+      <tr>
+         <th scope="row">#{status.index + 1}</th>
+         <td>#{quizz.label}</td>
+         <td>#{quizz.theme}</td>
+         <td>#{quizz.score}</td>
+         <td>#{quizz.created}</td>
+         <td>
+            <div class="dropdown">
+               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Action
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <h:form>
+                     <div class="action">
+                        <h:commandButton value="Add Question" action="#{questionBean.GoToAddQuestion(quizz)}" class="btn btn-primary addButton"/>
+                        <button type="button" class="btn btn-danger deleteButton" data-toggle="modal" data-target="#DeleteQuiz">
+                           <f:ajax listener="#{quizBean.selectQuizId(quizz.id)}" event="click"/>
+                           Delete Quiz
+                        </button>
+                     </div>
+
+                  </h:form>
+
+               </div>
+            </div>
+         </td>
+      </tr>
+   </ui:repeat>
+   </tbody>
+</table>
+
+
+</div>
+</div>
+<!--  delete Quiz Modal -->
+<div class="modal fade" id="DeleteQuiz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Quiz</h5>
+               <h:graphicImage value="#{resource['images:delete.png']}" width="35"/>
+         </div>
+         <div class="modal-body">
+            <p>Are you sure you want to delete this quiz?</p>
+         </div>
+         <div class="modal-footer">
+            <h:form>
+               <h:commandButton value="Delete Quiz" action="#{quizBean.deleteQuiz(quizBean.quizID, userBean.user)}" class="btn btn-danger deleteButton"/>
+            </h:form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!--  End of delete Quiz Modal -->
+
+
+
+
+</body>
+
+
+</html>

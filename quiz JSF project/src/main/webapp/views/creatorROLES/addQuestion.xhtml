@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <f:event type="preRenderView" listener="#{userBean.isloggedLevel2}" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Add new Question :</title>
+    <h:outputStylesheet library="css" name="bootstrap4.css" />
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputScript library="js" name="btJS.js" />
+    <h:outputScript library="js" name="btJS2.js" />
+    <h:outputScript library="js" name="mainJS.js" />
+</h:head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #4d4dff !important;">
+    <a class="navbar-brand" href="#">Quiz App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../creatorIndex.xhtml">Quizes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="StudentsNotes.xhtml">Student's Notes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addquiz.xhtml">Add Quiz</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="logo-nav">
+        <div class="dropdown user-nav">
+            <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h:graphicImage value="#{resource['images:user-logo.png']}" class="user-logo-image"/>
+            </a>
+            <h:outputLabel value="MR. #{userBean.user.firstName} #{userBean.user.lastName}"/>
+            <div class="dropdown-menu logoutMenu" aria-labelledby="userDropdown">
+                <!-- Add the content you want to show in the dropdown menu here -->
+                <h:form>
+                    <h:commandButton value="Log out" action="#{userBean.logOut}" class="btn btn-danger logOutbtn"/>
+                </h:form>
+
+            </div>
+
+        </div>
+        <h:graphicImage value="#{resource['images:Quiz-logo.png']}" width="120"/>
+    </div>
+</nav>
+<div class="FatherContainer">
+    <center>
+        <h4 style="color :#4d4dff !important;">create a question for your <h:outputLabel value="#{questionBean.quiz.label}"/> Quiz:</h4>
+    </center>
+    <h:form id="addQuestionForm">
+        <div class="formlogo">
+            <div class="title">
+                <h3 style="color: #72b42c !important; font-family: Monospace !important;">Create a Question</h3>
+            </div>
+            <div class="logo">
+                <h:graphicImage value="#{resource['images:question.png']}" width="60"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="statement">Statement</label>
+            <h:inputText id="statement" value="#{questionBean.question.statement}" class="form-control" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="grade">Grade</label>
+            <h:inputText id="grade" value="#{questionBean.question.grade}" class="form-control" required="true"/>
+        </div>
+        <div class="form-group">
+            <label>Answers :<h:outputLabel value="#{questionBean.question.statement}"/></label>
+                <ui:repeat value="#{questionBean.question.answers}" var="answer" varStatus="status">
+                   <div class="answer">
+                       <textarea class="form-control answer-content" rows="2" disabled="disabled">#{answer.statement}</textarea>
+                       <div class="is-correct"><label>#{answer.correct}</label></div>
+                   </div>
+                </ui:repeat>
+
+
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#AddNewAnswer">Add New Answer</button>
+        </div>
+        <div class="questionForm-footer">
+            <h:commandButton value="Add Question" action="#{questionBean.addQuestion}" class="btn btn-warning"/>
+            <h:commandButton value="reset" onclick="location.reload()" class="btn btn-danger">
+                <f:ajax listener="#{questionBean.resetQuestion()}" event="click"/>
+            </h:commandButton>
+        </div>
+
+    </h:form>
+</div>
+
+
+<!--  Add Answer Modal -->
+<div class="modal fade" id="AddNewAnswer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Answer</h5>
+                <h:graphicImage value="#{resource['images:answer.png']}" width="35"/>
+            </div>
+            <h:form id="addAnswerForm">
+                <div class="form-group">
+                    <label for="statementAnswer">Statement</label>
+                    <h:inputText id="statementAnswer" value="#{questionBean.answer.statement}" class="form-control" required="true"/>
+                </div>
+                <div class="form-group">
+                    <label for="gradeAnswer">is correct</label>
+                    <h:selectOneMenu id="gradeAnswer" value="#{questionBean.answer.correct}" class="form-control" required="true">
+                        <f:selectItem itemLabel="Correct" itemValue="correct" />
+                        <f:selectItem itemLabel="Incorrect" itemValue="incorrect" />
+                    </h:selectOneMenu>
+                    <h:message for="gradeAnswer" style="color: red"/>
+                </div>
+                <div class="modal-footer">
+                        <h:commandButton value="Add Answer" action="#{questionBean.addAnswer()}" class="btn btn-warning"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </h:form>
+
+
+        </div>
+    </div>
+</div>
+<!--  End of Add Answer Modal -->
+
+
+
+
+
+
+
+
+</body>
+</html>

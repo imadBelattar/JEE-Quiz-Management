@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+   <f:event type="preRenderView" listener="#{userBean.isloggedLevel1}" />
+   <meta charset="utf-8"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+   <title>Quiz App</title>
+   <h:outputStylesheet library="css" name="bootstrap4.css" />
+   <h:outputStylesheet library="css" name="style.css" />
+   <h:outputScript library="js" name="btJS.js" />
+   <h:outputScript library="js" name="btJS2.js" />
+   <h:outputScript library="js" name="mainJS.js" />
+</h:head>
+    <h:outputLabel value="Hello, learner"/>
+
+</html>

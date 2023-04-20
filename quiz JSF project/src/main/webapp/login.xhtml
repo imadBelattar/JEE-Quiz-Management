@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+   <meta charset="utf-8"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+   <title>Quiz Connexion</title>
+   <h:outputStylesheet library="css" name="bootstrap4.css" />
+   <h:outputStylesheet library="css" name="style.css" />
+   <h:outputScript library="js" name="btJS.js" />
+   <h:outputScript library="js" name="btJS2.js" />
+   <h:outputScript library="js" name="mainJS.js" />
+</h:head>
+<div class="appLogo">
+   <h:graphicImage value="#{resource['images:Quiz-logo.png']}" width="220"/>
+   <h:outputLabel value="Online Quiz Application Plateform." class="app-title"/>
+</div>
+<div class="FatherContainer login-page">
+<h:body>
+   <h:form id="loginForm">
+      <div class="form-group">
+         <h:outputLabel for="userLogin" value="Username:"/>
+         <h:inputText id="userLogin" value="#{userBean.userLogin}" class="form-control username"/>
+      </div>
+      <div class="form-group">
+         <h:outputLabel for="userPassword" value="Password:"/>
+         <h:inputSecret id="userPassword" value="#{userBean.userPassword}" class="form-control password"/>
+      </div>
+      <div class="form-group">
+         <h:commandButton value="Login" action="#{userBean.authentication}" class="btn btn-primary login-btn"/>
+         <h:messages style="color: red;" />
+      </div>
+   </h:form>
+</h:body>
+</div>
+<h:outputStylesheet>
+body{
+   background-color: #e6ffff;
+}
+</h:outputStylesheet>
+<footer class="footer-bg text-white py-3">
+   <div class="container">
+      <p class="text-center">Developed by Imad Belattar EST SAFI LP ISIR 2023 &#169; All rights reserved</p>
+   </div>
+</footer>
+
+
+</html>

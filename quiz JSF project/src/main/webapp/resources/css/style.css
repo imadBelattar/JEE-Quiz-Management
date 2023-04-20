@@ -1,0 +1,225 @@
+body{
+    background-color: #e0e0e0;
+}
+#addQuizForm {
+    width: 60%;
+    margin: auto;
+    border: solid #7c7cf5 3px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 120px;
+    background-color: #ededed;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+#addQuestionForm {
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ededed;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+#addAnswerForm{
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #76e8ff2e;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+#loginForm{
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    padding: 50px;
+    background-color: #ededed;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3)
+
+}
+
+.formlogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-right: auto;
+}
+.titleT{
+    font-family: Cursive;
+}
+
+.logo {
+    margin-left: auto;
+}
+.logo-nav {
+    margin-left: auto;
+}
+.logo-nav img{
+    height: 50px;
+    width: 100px;
+}
+.quizzesTable{
+    width: 82%;
+    margin: auto;
+    background-color: #fafafa;
+    margin-top: 45px;
+}
+.FatherContainer{
+    margin-top: 90px;
+    margin-bottom: 30px;
+}
+.quizzesTableContainer{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.quizzesTableContainer h5{
+    color : red;
+    font-weight: lighter;
+    font-family: Cursive;
+}
+
+.quizzesTable tr{
+    height: 150px;
+}
+.quizzesTable td{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px #80bfff solid;
+}
+.quizzesTable th{
+    text-align: center;
+    vertical-align: middle;
+
+}
+.quizzesTable thead tr{
+    height: 0;
+}
+.quizzesTable:hover{
+    cursor: pointer !important;
+}
+.addButton, .deleteButton{
+    font-size: 12px;
+    height: 45px;
+}
+.action{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.deleteButton{
+    margin-left: 20px;
+}
+.answer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-content{
+    margin-bottom: 5px;
+    width: 84%;
+
+}
+.is-correct {
+    width: 120px;
+    height: 60px;
+    border-radius: 2px;
+    text-align: center;
+    background-color: #9a9a9a;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 115%;
+}
+
+.questionForm-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.password{
+    margin-bottom: 40px;
+}
+.username{
+    margin-bottom: 40px;
+}
+.login-btn{
+    width: 100%;
+    color: #ffffff;
+    background-color:  #008080;
+    font-weight: bolder;
+}
+.login-page{
+    margin-top: 55px;
+}
+.app-title{
+    font-size: 120%;
+    color: red;
+    font-family: cursive;
+    font-weight: bold;
+    transition: font-size 0.3s ease-in-out;
+    transition : .6 s;
+}
+.app-title:hover{
+    font-size: 20px;
+    transition : .7s;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.appLogo:hover{
+    cursor: pointer;
+
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+.footer-bg{
+    background-color: #4d4dff !important;
+}
+.user-logo-image{
+    width: 50px !important;
+    height: 45px !important;
+    border:  #a4cccc 3px solid;
+    border-radius: 50%;
+}
+
+.logo-nav {
+    display: flex !important;
+    margin-left: auto;
+}
+.user-nav{
+    margin-right: 20px;
+}
+.user-nav label{
+    color: white;
+    margin-top: 10px !important;
+    margin-left: 10px;
+
+}
+.logOutbtn{
+    font-size: 12px;
+    height: 45px;
+    width: 80%;
+}
+.logoutMenu{
+    background-color: #b4b4f4;
+    padding: 15px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+

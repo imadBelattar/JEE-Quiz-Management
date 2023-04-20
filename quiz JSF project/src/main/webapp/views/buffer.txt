@@ -1,0 +1,29 @@
+
+            <ui:repeat value="#{questionBean.question.answers}" var="answer" varStatus="status">
+                <h:inputText id="answer_#{status.index}" value="#{answer.statement}" class="form-control" required="true"/>
+            </ui:repeat>
+
+            <!--  delete Answer Modal -->
+            <div class="modal fade" id="DeleteAnswer" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2">Delete Answer</h5>
+                            <h:graphicImage value="#{resource['images:delete.png']}" width="28"/>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this Answer?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <h:form>
+                                <h:commandButton value="Delete Quiz" action="#{questionBean.deleteAnswerList(answerIndex)}" class="btn btn-danger deleteButton"/>
+                            </h:form>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  End of delete answer Modal -->
+
+                                       <f:ajax listener="#{questionBean.deleteAnswerList(answer)}" event="click"/>
+           http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=quizdb&table=user
