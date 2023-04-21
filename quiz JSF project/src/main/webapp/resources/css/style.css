@@ -216,10 +216,78 @@ footer {
     text-align: center;
 }
 
+.card-body{
+padding: 0 !important;
+    text-align: center !important;
+}
+
+.img-zoom-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-zoom-container img {
+    transition: transform .7s;
+}
+
+.img-zoom-container:hover img {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.img-zoom-container:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1d1d1d94;
+    opacity: .5;
+    z-index: 1;
+    cursor: pointer;
+}
 
 
-
-
-
-
-
+.ToPassQuiz-title{
+    margin-right: 10%;
+}
+.descr{
+    color: red;
+}
+.select-creator{
+    background-color: transparent;
+    color: #484882;
+    border: none;
+    width: 100%;
+    border-radius: 0;
+    font-weight: bold;
+}
+.Go-to-quiz{
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 15px;
+    font-family: emoji;
+    font-weight: bolder;
+    font-size: 105%;
+}
+.select-creator:hover,.Go-to-quiz:hover{
+    color: #1eb456;
+    background-color: transparent;
+    box-shadow: none !important;
+}
+.select-creator:active ,.Go-to-quiz:active{
+    color: #1eb456 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.select-creator:focus, .Go-to-quiz:focus{
+    color: #1eb456 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.pass-quiz-modal .modal-body{
+    background-color: #98a2ab5c;
+}

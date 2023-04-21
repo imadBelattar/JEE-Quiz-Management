@@ -2,7 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 <h:head>
    <f:event type="preRenderView" listener="#{userBean.isloggedLevel1}" />
    <meta charset="utf-8"/>
@@ -13,7 +15,107 @@
    <h:outputScript library="js" name="btJS.js" />
    <h:outputScript library="js" name="btJS2.js" />
    <h:outputScript library="js" name="mainJS.js" />
+   <h:outputScript library="js" name="jquery3.6.0.js" />
 </h:head>
-    <h:outputLabel value="Hello, learner"/>
+<h:body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #4d4dff !important;">
+      <a class="navbar-brand" href="#">Quiz App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"/>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav">
+            <li class="nav-item active">
+               <a class="nav-link" href="learnerIndex.xhtml">Available Quizzes</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="notes.xhtml">Your Notes</a>
+            </li>
+         </ul>
+
+      </div>
+      <div class="logo-nav">
+         <div class="dropdown user-nav">
+            <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <h:graphicImage value="#{resource['images:user-logo.png']}" class="user-logo-image"/>
+            </a>
+            <h:outputLabel value="MR. #{userBean.user.firstName} #{userBean.user.lastName}"/>
+            <div class="dropdown-menu logoutMenu" aria-labelledby="userDropdown">
+               <!-- Add the content you want to show in the dropdown menu here -->
+               <h:form>
+                  <h:commandButton value="Log out" action="#{userBean.logOut}" class="btn btn-danger logOutbtn"/>
+               </h:form>
+
+            </div>
+
+         </div>
+         <h:graphicImage value="#{resource['images:Quiz-logo.png']}" width="120"/>
+      </div>
+
+   </nav>
+  <div class="FatherContainer">
+     <div class="availableQuizzes">
+        <div class="container">
+           <div class="row">
+              <ui:repeat value="#{learnerBean.creatorUsers}" var="creator" varStatus="status">
+                 <div class="col-sm-3">
+                    <div class="card bg-light mb-3 creator-card" style="max-width: 18rem;">
+                       <div class="card-header">Instructor Mr. #{creator.firstName} #{creator.lastName}</div>
+                       <div class="card-body">
+                          <div class="creator-img">
+                             <div class="img-zoom-container">
+                                <h:graphicImage value="#{resource['images:multiple-choice.jpg']}" width="100%"/>
+                             </div>
+                          </div>
+
+
+                          <h5 class="card-title">
+                             <button class="btn btn-success select-creator" data-toggle="modal" data-target="#creatorQuizzes#{status.index}">
+                                #{creator.quizzes.size()} Quizzes
+                             </button>
+                          </h5>
+
+                          <!--  quizzes Modal -->
+                          <div class="modal fade pass-quiz-modal" id="creatorQuizzes#{status.index}" tabindex="-1" aria-labelledby="exampleModalLabel#{status.index}" aria-hidden="true">
+                             <div class="modal-dialog">
+                                <div class="modal-content">
+                                   <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel#{status.index}">take a Quiz</h5>
+                                   </div>
+                                   <div class="modal-body">
+                                      <ui:repeat value="#{creator.quizzes}" var="quiz" varStatus="sts">
+                                       <h:form>
+                                                <h:commandButton class="Go-to-quiz" value="Quiz #{sts.index + 1}:    #{quiz.label}   #{quiz.theme}   #{quiz.created}" action="null"/>
+                                                <h:graphicImage value="#{resource['images:pass-quiz.png']}" width="26"/>
+                                       </h:form>
+                                      </ui:repeat>
+                                   </div>
+                                   <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                          <!--  End of quizzes Modal -->
+                       </div>
+                    </div>
+                 </div>
+                 <c:if test="${status.index % 4 == 3}">
+           <div class="row next-row"></div>
+              </c:if>
+        </ui:repeat>
+     </div>
+  </div>
+
+     </div>
+
+
+
+
+  </div>
+</h:body>
+
+
 
 </html>
