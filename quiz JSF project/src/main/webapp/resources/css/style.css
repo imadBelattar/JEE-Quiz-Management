@@ -66,6 +66,14 @@ body{
     background-color: #fafafa;
     margin-top: 45px;
 }
+.passedQuizzesTable{
+    width: 82%;
+    margin: auto;
+    background-color: #fafafa;
+    margin-top: 140px;
+}
+
+
 .FatherContainer{
     margin-top: 90px;
     margin-bottom: 30px;

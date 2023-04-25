@@ -24,6 +24,7 @@
     <div class="questionBlock">
 
         <h:form>
+            <h:outputText value="(#{passQuiz.currentQuestion.grade} Points)" />
             <h:outputText value="Question #{passQuiz.currentQuestionIndex + 1}: #{passQuiz.currentQuestion.statement}" styleClass="question" />
             <div class="answersOptions">
                 <h:selectManyCheckbox value="#{passQuiz.selectedAnswers}">

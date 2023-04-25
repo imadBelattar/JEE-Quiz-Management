@@ -1,6 +1,7 @@
 package metier;
 
 
+import com.DAO.Quiz;
 import com.DAO.User;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -10,6 +11,9 @@ import jakarta.persistence.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -20,6 +24,16 @@ public class UserBean implements Serializable {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("quiz");
     private EntityManager em;
     private User user;
+
+    private HashMap<Quiz, Float> passedQuizzes;
+
+    public HashMap<Quiz, Float> getPassedQuizzes() {
+        return passedQuizzes;
+    }
+
+    public void setPassedQuizzes(HashMap<Quiz, Float> passedQuizzes) {
+        this.passedQuizzes = passedQuizzes;
+    }
 
     public UserBean() {
         user = new User();
@@ -111,8 +125,28 @@ public class UserBean implements Serializable {
         }
     }
 
+    public String userPassedQuizzes(){
+        passedQuizzes = new HashMap<>();
+        em = entityManagerFactory.createEntityManager();
+        try {
+            TypedQuery<Object[]> query = em.createQuery("SELECT qs.obtainedScore, q FROM Quiz q JOIN q.QuizScores qs WHERE qs.id.userId = :userId", Object[].class);
+            query.setParameter("userId", this.user.getId());
+            List<Object[]> resultList = query.getResultList();
+            for(Object[] result: resultList){
+                float score = (Float) result[0];
+                Quiz quiz = (Quiz) result[1];
+                passedQuizzes.put(quiz, score);
+            }
+        } catch (NoResultException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error retrieving passed quizzes of the user !"));
+            return null;
+        } finally {
+            em.close();
+        }
+        return "/views/learnerROLES/marks.xhtml";
+    }
 
 
 
-
+// end of class
 }
