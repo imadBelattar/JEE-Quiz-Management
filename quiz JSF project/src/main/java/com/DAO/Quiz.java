@@ -30,9 +30,20 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Question> questions;
+    @OneToMany(mappedBy = "id.quizId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UserQuizScore> QuizScores = new ArrayList<UserQuizScore>();
 
     public Quiz() {
         questions = new ArrayList<Question>();
+
+    }
+
+    public List<UserQuizScore> getQuizScores() {
+        return QuizScores;
+    }
+
+    public void setQuizScores(List<UserQuizScore> quizScores) {
+        QuizScores = quizScores;
     }
 
     public Long getId() {

@@ -32,9 +32,21 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Quiz> quizzes;
+    @OneToMany(mappedBy = "id.userId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UserQuizScore> UserScores = new ArrayList<UserQuizScore>();
 
     public User() {
+
         quizzes = new ArrayList<Quiz>();
+
+    }
+
+    public List<UserQuizScore> getUserScores() {
+        return UserScores;
+    }
+
+    public void setUserScores(List<UserQuizScore> userScores) {
+        UserScores = userScores;
     }
 
     public Long getId() {

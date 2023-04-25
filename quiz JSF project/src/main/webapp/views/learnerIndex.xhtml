@@ -30,7 +30,7 @@
                <a class="nav-link" href="learnerIndex.xhtml">Available Quizzes</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="notes.xhtml">Your Notes</a>
+               <a class="nav-link" href="learnerROLES/marks.xhtml">Your Notes</a>
             </li>
          </ul>
 
@@ -86,8 +86,8 @@
                                    <div class="modal-body">
                                       <ui:repeat value="#{creator.quizzes}" var="quiz" varStatus="sts">
                                        <h:form>
-                                                <h:commandButton class="Go-to-quiz" value="Quiz #{sts.index + 1}:    #{quiz.label}   #{quiz.theme}   #{quiz.created}" action="null"/>
-                                                <h:graphicImage value="#{resource['images:pass-quiz.png']}" width="26"/>
+                                                <h:commandButton class="Go-to-quiz" value="Quiz #{sts.index + 1}:    #{quiz.label}   #{quiz.theme}   #{quiz.created}" action="#{passQuiz.selectPassingQuiz(quiz)}"/>
+                                                <h:graphicImage value="#{resource['images:pass-quiz.png']}" width="25"/>
                                        </h:form>
                                       </ui:repeat>
                                    </div>
@@ -102,7 +102,7 @@
                     </div>
                  </div>
                  <c:if test="${status.index % 4 == 3}">
-           <div class="row next-row"></div>
+                  <div class="row next-row"></div>
               </c:if>
         </ui:repeat>
      </div>

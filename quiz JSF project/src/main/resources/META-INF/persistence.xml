@@ -9,6 +9,7 @@
         <class>com.DAO.Quiz</class>
         <class>com.DAO.Question</class>
         <class>com.DAO.Answer</class>
+        <class>com.DAO.UserQuizScore</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/quizdb" />
