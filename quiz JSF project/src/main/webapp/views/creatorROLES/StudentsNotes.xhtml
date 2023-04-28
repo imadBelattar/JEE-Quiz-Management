@@ -7,6 +7,7 @@
 
 <h:head>
     <f:event type="preRenderView" listener="#{userBean.isloggedLevel2}" />
+    <f:event type="preRenderView" listener="#{userBean.userPassedQuizzes}" />
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Quiz App</title>
@@ -21,18 +22,17 @@
         <a class="navbar-brand" href="#">Quiz App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"/>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../learnerIndex.xhtml">Available Quizzes</a>
+                    <a class="nav-link active" href="../creatorIndex.xhtml">Quizes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="marks.xhtml">Your Notes</a>
+                    <a class="nav-link" href="addquiz.xhtml">Add Quiz</a>
                 </li>
             </ul>
-
         </div>
         <div class="logo-nav">
             <div class="dropdown user-nav">
@@ -51,29 +51,30 @@
             </div>
             <h:graphicImage value="#{resource['images:Quiz-logo.png']}" width="120"/>
         </div>
-
     </nav>
-<div class="FatherContainer">
-    <table class="table passedQuizzesTable">
-        <thead>
-        <tr>
-            <th scope="col">Quiz</th>
-            <th scope="col">Theme</th>
-            <th scope="col">Mark</th>
-        </tr>
-        </thead>
-        <tbody>
-        <ui:repeat value="#{userBean.passedQuizzes.entrySet().toArray()}" var="entry" varStatus="status">
+    <div class="FatherContainer">
+        <table class="table passedQuizzesTable">
+            <thead>
             <tr>
-                <td>#{entry.key.label}</td>
-                <td>#{entry.key.theme}</td>
-                <td>#{entry.value}/#{entry.key.score}</td>
+                <th scope="col">Num°</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Mark</th>
             </tr>
-        </ui:repeat>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <ui:repeat value="#{userBean.quizPassers.entrySet().toArray()}" var="entry" varStatus="status">
+                <tr>
+                    <td>#{status.index + 1}</td>
+                    <td>#{entry.key.firstName}</td>
+                    <td>#{entry.key.lastName}</td>
+                    <td>#{entry.value}/#{userBean.selectedQuiz.score}</td>
+                </tr>
+            </ui:repeat>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
 
 

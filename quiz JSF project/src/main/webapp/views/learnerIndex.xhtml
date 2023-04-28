@@ -7,6 +7,8 @@
 
 <h:head>
    <f:event type="preRenderView" listener="#{userBean.isloggedLevel1}" />
+   <f:event type="preRenderView" listener="#{userBean.userPassedQuizzes}" />
+   <f:event type="preRenderView" listener="#{learnerBean.retrieveCreatorUsers(userBean.user)}" />
    <meta charset="utf-8"/>
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
    <title>Quiz App</title>
@@ -85,11 +87,12 @@
                                    </div>
                                    <div class="modal-body">
                                       <ui:repeat value="#{creator.quizzes}" var="quiz" varStatus="sts">
-                                       <h:form>
-                                                <h:commandButton class="Go-to-quiz" value="Quiz #{sts.index + 1}:    #{quiz.label}   #{quiz.theme}   #{quiz.created}" action="#{passQuiz.selectPassingQuiz(quiz)}"/>
-                                                <h:graphicImage value="#{resource['images:pass-quiz.png']}" width="25"/>
-                                       </h:form>
+                                         <h:form>
+                                               <h:commandButton class="Go-to-quiz" value="Quiz #{sts.index + 1}: #{quiz.label} #{quiz.theme} #{quiz.created}" action="#{passQuiz.selectPassingQuiz(quiz)}"/>
+                                               <h:graphicImage value="#{resource['images:pass-quiz.png']}" width="25"/>
+                                         </h:form>
                                       </ui:repeat>
+
                                    </div>
                                    <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

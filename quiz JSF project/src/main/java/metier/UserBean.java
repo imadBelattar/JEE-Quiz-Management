@@ -26,6 +26,8 @@ public class UserBean implements Serializable {
     private User user;
 
     private HashMap<Quiz, Float> passedQuizzes;
+    private HashMap<User, Float> quizPassers;
+    private Quiz selectedQuiz;
 
     public HashMap<Quiz, Float> getPassedQuizzes() {
         return passedQuizzes;
@@ -33,6 +35,22 @@ public class UserBean implements Serializable {
 
     public void setPassedQuizzes(HashMap<Quiz, Float> passedQuizzes) {
         this.passedQuizzes = passedQuizzes;
+    }
+
+    public HashMap<User, Float> getQuizPassers() {
+        return quizPassers;
+    }
+
+    public void setQuizPassers(HashMap<User, Float> quizPassers) {
+        this.quizPassers = quizPassers;
+    }
+
+    public Quiz getSelectedQuiz() {
+        return selectedQuiz;
+    }
+
+    public void setSelectedQuiz(Quiz selectedQuiz) {
+        this.selectedQuiz = selectedQuiz;
     }
 
     public UserBean() {
@@ -143,8 +161,41 @@ public class UserBean implements Serializable {
         } finally {
             em.close();
         }
-        return "/views/learnerROLES/marks.xhtml";
+        return "/views/learnerROLES/marks.xhtml?faces-redirect=true";
     }
+
+    public String studentScore(Quiz quiz){
+        selectedQuiz = quiz;
+        quizPassers = new HashMap<>();
+        em = entityManagerFactory.createEntityManager();
+        try {
+            TypedQuery<Object[]> query = em.createQuery("SELECT us.obtainedScore, u FROM User u JOIN u.UserScores us WHERE us.id.quizId = :quizId", Object[].class);
+            query.setParameter("quizId", quiz.getId());
+            List<Object[]> resultList = query.getResultList();
+            for(Object[] result: resultList){
+                float score = (Float) result[0];
+                User user = (User) result[1];
+                quizPassers.put(user, score);
+            }
+        } catch (NoResultException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error retrieving users who passed the quiz !"));
+            return null;
+        } finally {
+            em.close();
+        }
+        return "/views/creatorROLES/StudentsNotes.xhtml?faces-redirect=true";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 

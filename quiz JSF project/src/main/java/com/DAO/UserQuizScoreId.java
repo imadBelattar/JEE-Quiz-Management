@@ -3,7 +3,7 @@ package com.DAO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
-
+import java.util.Objects;
 
 
 @Embeddable
@@ -37,4 +37,5 @@ public class UserQuizScoreId implements Serializable {
     public void setQuizId(Long quizId) {
         this.quizId = quizId;
     }
+
 }

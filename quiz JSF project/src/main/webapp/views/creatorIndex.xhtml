@@ -28,9 +28,6 @@
          <a class="nav-link" href="creatorIndex.xhtml">Quizes</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" href="StudentsNotes.xhtml">Student's Notes</a>
-      </li>
-      <li class="nav-item">
          <a class="nav-link" href="creatorROLES/addquiz.xhtml">Add Quiz</a>
       </li>
    </ul>
@@ -88,8 +85,9 @@
                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <h:form>
                      <div class="action">
-                        <h:commandButton value="Add Question" action="#{questionBean.GoToAddQuestion(quizz)}" class="btn btn-primary addButton"/>
-                        <button type="button" class="btn btn-danger deleteButton" data-toggle="modal" data-target="#DeleteQuiz">
+                        <h:commandButton value="students notes" action="#{userBean.studentScore(quizz)}" class="btn btn-secondary addButton grBtn"/>
+                        <h:commandButton value="Add Question" action="#{questionBean.GoToAddQuestion(quizz)}" class="btn btn-secondary addButton grBtn"/>
+                        <button type="button" class="btn btn-secondary deleteButton grBtn" data-toggle="modal" data-target="#DeleteQuiz">
                            <f:ajax listener="#{quizBean.selectQuizId(quizz.id)}" event="click"/>
                            Delete Quiz
                         </button>

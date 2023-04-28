@@ -111,14 +111,11 @@ body{
 .addButton, .deleteButton{
     font-size: 12px;
     height: 45px;
+    width: 100%;
+    margin-top: 10px;
 }
 .action{
-    display: flex;
-    justify-content: space-between;
     padding: 10px;
-}
-.deleteButton{
-    margin-left: 20px;
 }
 .answer{
     display: flex;
@@ -172,9 +169,6 @@ body{
     transition : .6 s;
 }
 .app-title:hover{
-    font-size: 20px;
-    transition : .7s;
-    transform: scale(1.2);
     cursor: pointer;
 }
 
@@ -225,7 +219,7 @@ footer {
 }
 
 .card-body{
-padding: 0 !important;
+    padding: 0 !important;
     text-align: center !important;
 }
 
@@ -338,7 +332,7 @@ padding: 0 !important;
     margin-left: calc(100% - 110px) !important;
     background-color: #1f7cf4;
     border-radius: 2px;
-    margin-top: 15%;
+    margin-top: 10%;
 
 
 }
@@ -358,7 +352,9 @@ padding: 0 !important;
     font-weight: bold;
     font-family: sans-serif;
 }
-
+.grBtn{
+    background-color:#75b5d5 ;
+}
 
 
 
